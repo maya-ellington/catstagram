@@ -17,10 +17,14 @@ export default function SignUpPage(props) {
     last_name: '',
   })
 
+  const [selectedFile, setSelectedFile] = useState('');
+
+
   async function handleSubmit(e){
     e.preventDefault()
 
     const formData = new FormData();
+    formData.append('photo', selectedFile);
 
     for (let fieldName in state){
       formData.append(fieldName, state[fieldName])
@@ -44,6 +48,12 @@ export default function SignUpPage(props) {
         ...state,
         [e.target.name]: e.target.value
       })
+    }
+
+
+    function handleFileInput(e){
+      console.log(e.target.files);
+      setSelectedFile(e.target.files[0])
     }
 
   return (
@@ -92,6 +102,14 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
+            <Form.Field>
+              <Form.Input
+                type="file"
+                name="photo"
+                placeholder="upload image"
+                onChange={handleFileInput}
+              />
+            </Form.Field>
             <Button type="submit" className="btn" color="black">
               Signup
             </Button>
