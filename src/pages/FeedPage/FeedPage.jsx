@@ -63,7 +63,6 @@ export default function FeedPage({user, handleLogout}) {
           <Gallery
             posts={posts}
             numPhotosCol={3}
-            loading={loading}
           />
         </Grid.Column>
       </Grid.Row>

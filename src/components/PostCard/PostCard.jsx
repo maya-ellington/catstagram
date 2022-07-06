@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function PostCard({ post }){
       return(
-        <Card key={post.pk} raised>
+        <Card key={post.pk} raised href='single-card'>
           <Image src={`http://catstagram.lofty.codes/media/${post.image}`} wrapped ui={false} />
           <Card.Content>
             <Card.Description>{post.name}</Card.Description>
@@ -13,4 +13,3 @@ export default function PostCard({ post }){
         </Card>
       )
 }
-
