@@ -5,6 +5,17 @@
     margin-right: 50%;
 	font-weight: bold;
     font-size: 150%;
-
-
 }
+
+.ui.segment {
+    background: black;
+    width: 100%
+}
+
+a {
+    color: white;
+}
+
+body {
+    overflow-y: hidden;
+  }
