@@ -57,7 +57,7 @@ export default function AddPostForm(){
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-     <Button>Add post</Button>
+     <Button className='feed'>+</Button>
       }
     >
       <Modal.Content>

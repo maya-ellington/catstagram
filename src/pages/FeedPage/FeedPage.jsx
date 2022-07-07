@@ -41,13 +41,11 @@ export default function FeedPage({user, handleLogout}) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-      </Grid.Row>
-      {/* <Grid.Row>
-        <Grid.Column style={{ maxWidth: 450 }}>
+      <Grid.Column centered columns={1}>
           <AddPostForm />
         </Grid.Column>
-      </Grid.Row> */}
-      <Grid.Row style={{ marginTop: 200 }}>
+      </Grid.Row>
+      <Grid.Row style={{ padding: 20 }}>
         <Grid.Column style={{ maxWidth: 1200 }}>
           <Gallery
             posts={posts}
