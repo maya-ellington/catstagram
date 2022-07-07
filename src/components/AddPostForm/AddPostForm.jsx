@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Form, Grid, Segment} from 'semantic-ui-react'
+import { Button, Form, Grid, Segment, Modal} from 'semantic-ui-react'
 
 
-export default function AddPostForm(props){
+export default function AddPostForm(){
+
   const [selectedFile, setSelectedFile] = useState('')
 
   const [state, setState] = useState({
     name: '',
     image: null
   })
+
+  const [open, setOpen] = React.useState(false)
+
+  function handleCloseModal(){
+    setOpen(false)
+  }
 
   function handleChange(e){
     setState({
@@ -36,58 +43,58 @@ export default function AddPostForm(props){
       headers: {
        'Content-Type': 'multipart/form-data',
       }
+
     })
         .then(res => {
           console.log(res.data);
+          handleCloseModal()
         })
         .catch(err => console.log(err))
-        console.log(state)
   };
     return (
-      <Grid textAlign='center' style={{ height: '25vh' }} verticalAlign='middle'>
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <Segment>
-        
-            <Form  autoComplete="off" onSubmit={handleSubmit}>
+      <Modal
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      trigger={
+     <Button>Add post</Button>
+      }
+    >
+      <Modal.Content>
+          <Grid textAlign='center' style={{ height: '50vh' }} verticalAlign='middle'>
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Segment>
             
-              <Form.Input
-                  className="form-control"
-                  name="name"
-                  value={state.name}
-                  placeholder="Image title"
-                  onChange={handleChange}
-                  required
-              />      
-              <Form.Input
-                className="form-control"
-                type="file"
-                name="image"
-                placeholder="upload cat image"
-                onChange={handleFileInput}
-              />   
-              <Button
-                type="submit"
-                className="btn"
-              >
-                ADD CAT POST
-              </Button>
-            </Form>
-          </Segment>
-      </Grid.Column>
-    </Grid>
-      // <div>
-      //   <form onSubmit={handleSubmit}>
-      //     <p>
-      //       <input type="text" placeholder='Title' id='title' value={state.title} onChange={handleChange} required/>
-      //     </p>
-      //     <p>
-      //       <input type="file"
-      //              id="image"
-      //               onChange={handleImageChange} required/>
-      //     </p>
-      //     <input type="submit"/>
-      //   </form>
-      // </div>
+                <Form  autoComplete="off" onSubmit={handleSubmit}>
+                
+                  <Form.Input
+                      className="form-control"
+                      name="name"
+                      value={state.name}
+                      placeholder="Image title"
+                      onChange={handleChange}
+                      required
+                  />      
+                  <Form.Input
+                    className="form-control"
+                    type="file"
+                    name="image"
+                    placeholder="upload cat image"
+                    onChange={handleFileInput}
+                  />   
+                  <Button
+                    type="submit"
+                    className="btn"
+                  >
+                    ADD CAT POST
+                  </Button>
+                </Form>
+              </Segment>
+          </Grid.Column>
+        </Grid>
+      </Modal.Content>
+      
+    </Modal>
     );
   
 };

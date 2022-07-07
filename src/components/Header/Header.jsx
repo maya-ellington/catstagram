@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Header, Segment, Image, Icon } from "semantic-ui-react";
+import AddPostForm from "../AddPostForm/AddPostForm";
 
 export default function PageHeader({ user, handleLogout }) {
   return (
     <Segment clearing>
       <Header as="h2" floated="right">
-        
+        <AddPostForm />
         <Link to="" onClick={handleLogout}>
-          Logout
-        </Link>
-        <Link to={`/${user?.username}`}>
-          <Image
+            Logout
+            <Image
             src={
               user?.photoUrl
                 ? user?.photoUrl
