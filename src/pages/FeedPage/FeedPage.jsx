@@ -18,35 +18,32 @@ import * as postsAPI from "../../utils/postApi";
 
 export default function FeedPage({user, handleLogout}) {
   const [posts, setPosts] = useState([]); 
-  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [selectedImg, setSelectedImg] = useState(null);
 
-  async function handleAddPost(post) {
+  // async function handleAddPost(post) {
+  //   try {
+  //     const response = await axios.post('http://catstagram.lofty.codes/api/posts/', this.state)
+  //     console.log(response)
+  //   } catch (err) {
+  //     console.log(err);
+  //     setError(err.message);
+  //   }
+  // }
+
+
+
+  async function getRequest() {
     try {
-      setLoading(true);
-      const data = await postsAPI.create(post); 
-      console.log(data, " this is response from the server, in handleAddPost");
-      setPosts([data.post, ...posts]);
-      setLoading(false);
+      const response = await axios.get('http://catstagram.lofty.codes/api/posts/')
+      const posts = response.data
+      setPosts([...posts]);
     } catch (err) {
       console.log(err);
       setError(err.message);
     }
   }
 
-  async function getRequest() {
-    const response = await axios.get('http://catstagram.lofty.codes/api/posts/')
-    const posts = response.data
-    console.log(posts)
-    setPosts([...posts]);
-    console.log(posts, 'POSTSSSS')
-    const comments = posts[0].comments
-    setComments([...comments])
-    console.log(comments, 'THIS IS THE ACTUAL COMMENT')
-
-  }
   useEffect(() => {
     getRequest();
   }, []);
@@ -63,7 +60,7 @@ export default function FeedPage({user, handleLogout}) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <AddPostForm handleAddPost={handleAddPost} />
+          <AddPostForm />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row style={{ marginTop: 200 }}>
@@ -71,19 +68,9 @@ export default function FeedPage({user, handleLogout}) {
           <Gallery
             posts={posts}
             numPhotosCol={3}
-            setSelectedImg={setSelectedImg}
-            comments={comments}
           />
         </Grid.Column>
       </Grid.Row>
-      {/* <Grid.Row style={{ marginTop: 200 }}>
-        <Grid.Column style={{ maxWidth: 1200 }}>
-          <PostPage
-            setSelectedImg={setSelectedImg}
-          />
-        </Grid.Column>
-      </Grid.Row> */}
     </Grid>
-    
   );
 }

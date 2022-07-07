@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 import { Button, Form, Grid, Segment} from 'semantic-ui-react'
 
-export default function AddEventForm(props){
+
+export default function AddPostForm(props){
   const [selectedFile, setSelectedFile] = useState('')
+
   const [state, setState] = useState({
-    user: '',
-    photoUrl: '',
-    date: '',
-    location: '',
-    description: '',
-    postType: ''
+    name: '',
+    image: null
   })
-
-  function handleFileInput(e){
-    setSelectedFile(e.target.files[0])
-  }
-
 
   function handleChange(e){
     setState({
@@ -25,35 +18,50 @@ export default function AddEventForm(props){
     })
   }
 
-  function handleSubmit(e){
-    e.preventDefault()
-             
-    const formData = new FormData()
-    formData.append('photo', selectedFile)
-    formData.append('name', state.name)
-    
-    props.handlePost(formData); 
+
+  function handleFileInput(e){
+    setSelectedFile(e.target.files[0])
   }
 
+  function handleSubmit(e) {
 
-  return (
-    
-    <Grid textAlign='center' style={{ height: '25vh' }} verticalAlign='middle'>
+    e.preventDefault();
+
+    const formData = new FormData()
+    formData.append('image', selectedFile)
+    formData.append('name', state.name)
+
+    let url = 'http://catstagram.lofty.codes/api/posts/';
+    axios.post(url, formData, {
+      headers: {
+       'Content-Type': 'multipart/form-data',
+      }
+    })
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => console.log(err))
+        console.log(state)
+  };
+    return (
+      <Grid textAlign='center' style={{ height: '25vh' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Segment>
+        
             <Form  autoComplete="off" onSubmit={handleSubmit}>
-               <Form.Input
+            
+              <Form.Input
                   className="form-control"
                   name="name"
                   value={state.name}
-                  placeholder="Image name"
+                  placeholder="Image title"
                   onChange={handleChange}
                   required
-              />                
+              />      
               <Form.Input
                 className="form-control"
                 type="file"
-                name="photo"
+                name="image"
                 placeholder="upload cat image"
                 onChange={handleFileInput}
               />   
@@ -61,12 +69,26 @@ export default function AddEventForm(props){
                 type="submit"
                 className="btn"
               >
-                ADD POST
+                ADD CAT POST
               </Button>
             </Form>
           </Segment>
       </Grid.Column>
     </Grid>
-   
-  ); 
-}
+      // <div>
+      //   <form onSubmit={handleSubmit}>
+      //     <p>
+      //       <input type="text" placeholder='Title' id='title' value={state.title} onChange={handleChange} required/>
+      //     </p>
+      //     <p>
+      //       <input type="file"
+      //              id="image"
+      //               onChange={handleImageChange} required/>
+      //     </p>
+      //     <input type="submit"/>
+      //   </form>
+      // </div>
+    );
+  
+};
+
