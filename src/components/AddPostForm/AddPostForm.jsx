@@ -37,8 +37,8 @@ export default function AddPostForm(){
     const formData = new FormData()
     formData.append('image', selectedFile)
     formData.append('name', state.name)
-    
-    let url = 'http://catstagram.lofty.codes/api/posts/';
+
+    let url = 'https://catstagram.lofty.codes/api/posts/';
     axios.post(url, formData, {
       headers: {
        'Content-Type': 'multipart/form-data',

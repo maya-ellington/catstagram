@@ -19,7 +19,7 @@ export default function FeedPage({user, handleLogout}) {
 
   async function getRequest() {
     try {
-      const response = await axios.get('http://catstagram.lofty.codes/api/posts/')
+      const response = await axios.get('https://catstagram.lofty.codes/api/posts/')
       const posts = response.data
       setPosts([...posts]);
     } catch (err) {
