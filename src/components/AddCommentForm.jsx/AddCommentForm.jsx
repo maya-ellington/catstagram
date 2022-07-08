@@ -21,7 +21,7 @@ export default function AddCommentForm(entry){
     formData.append('text', state.text)
     formData.append('entry', entry.entry)
     console.log(entry.entry)
-    let url = 'https://catstagram.lofty.codes/api/comments/';
+    let url = 'http://catstagram.lofty.codes/api/comments/';
     setState({ text: ''})
 
     axios.post(url, formData, {
