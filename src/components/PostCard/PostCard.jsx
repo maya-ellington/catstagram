@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Image, Modal, Header, Button } from "semantic-ui-react";
+import AddCommentForm from "../AddCommentForm.jsx/AddCommentForm";
 import Comment from "../Comment/Comment";
 
 
@@ -53,6 +54,9 @@ export default function PostCard({ post }){
           <Modal.Description>
             <Header textAlign="center">{post.name}</Header>
           </Modal.Description>
+        </Modal.Content>
+        <Modal.Content>
+          <AddCommentForm entry={post.pk}/>
         </Modal.Content>
         {comments.map((comment) => {
           return(

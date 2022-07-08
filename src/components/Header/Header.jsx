@@ -5,7 +5,7 @@ import { Header, Segment, Image, Icon } from "semantic-ui-react";
 export default function PageHeader({ user, handleLogout }) {
   return (
     <Segment clearing>
-      <Header as="h2" floated="right" color="white">
+      <Header as="h2" floated="right">
         <Link to="" onClick={handleLogout}>
             Logout
             <Image
@@ -18,7 +18,7 @@ export default function PageHeader({ user, handleLogout }) {
           ></Image>
         </Link>
       </Header>
-      <Header as="h2" floated="left" color="white">
+      <Header as="h2" floated="left">
       <Image src="https://i.imgur.com/zDaNXvR.png" />
         <Link to="/" color="white">
           Catstagram
