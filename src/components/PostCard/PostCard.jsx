@@ -38,35 +38,35 @@ export default function PostCard({ post }){
             <Card.Description>{post.name}</Card.Description>
           </Card.Content>
         </Card>
-        }
-      > 
-        <Modal.Header>
-        <Modal.Actions>
-              <Button color='black' onClick={() => setOpen(false)}>
-                X
-              </Button>
-            </Modal.Actions>
-        </Modal.Header>
-        <Modal.Content image>
-          <Image size='large' src={`http://catstagram.lofty.codes/media/${post.image}`} wrapped centered/>
-        </Modal.Content>
-        <Modal.Content>
-          <Modal.Description>
-            <Header textAlign="center">{post.name}</Header>
-          </Modal.Description>
-        </Modal.Content>
-        <Modal.Content>
-          <AddCommentForm entry={post.pk}/>
-        </Modal.Content>
-        {comments.map((comment) => {
-          return(
-            <Comment 
-              comment={comment} 
-              key={post.pk} 
-              post={post}
-            />
-          );
-        })}
+      }
+    > 
+      <Modal.Header>
+      <Modal.Actions>
+            <Button color='black' onClick={() => setOpen(false)}>
+              X
+            </Button>
+          </Modal.Actions>
+      </Modal.Header>
+      <Modal.Content image>
+        <Image size='large' src={`http://catstagram.lofty.codes/media/${post.image}`} wrapped centered/>
+      </Modal.Content>
+      <Modal.Content>
+        <Modal.Description>
+          <Header textAlign="center">{post.name}</Header>
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Content>
+        <AddCommentForm entry={post.pk}/>
+      </Modal.Content>
+      {comments.map((comment) => {
+        return(
+          <Comment 
+            comment={comment} 
+            key={post.pk} 
+            post={post}
+          />
+        );
+      })}
     </Modal>
     )
   }

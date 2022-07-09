@@ -5,7 +5,7 @@ import Loader from '../Loader/Loader';
 
 export default function Gallery({ comments, posts, numPhotosCol, loading, setSelectedImg }){
     return (
-        <Card.Group itemsPerRow={numPhotosCol} stackable>
+      <Card.Group itemsPerRow={numPhotosCol} stackable>
         {loading ? (
           <Segment>
             <Dimmer active inverted>
@@ -24,6 +24,5 @@ export default function Gallery({ comments, posts, numPhotosCol, loading, setSel
           );
         })}
       </Card.Group>
-
     )
 }

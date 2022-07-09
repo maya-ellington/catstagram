@@ -50,7 +50,6 @@ export default function SignUpPage(props) {
       })
     }
 
-
     function handleFileInput(e){
       console.log(e.target.files);
       setSelectedFile(e.target.files[0])

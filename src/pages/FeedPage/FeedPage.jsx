@@ -41,7 +41,7 @@ export default function FeedPage({user, handleLogout}) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-      <Grid.Column>
+        <Grid.Column>
           <AddPostForm />
         </Grid.Column>
       </Grid.Row>
