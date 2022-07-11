@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Image, Modal, Header, Button } from "semantic-ui-react";
-import AddCommentForm from "../AddCommentForm.jsx/AddCommentForm";
+import AddCommentForm from "../AddCommentForm/AddCommentForm";
 import Comment from "../Comment/Comment";
 
 

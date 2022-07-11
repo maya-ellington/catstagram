@@ -3,7 +3,7 @@ import { Card, Dimmer, Segment, Image  } from 'semantic-ui-react'
 import PostCard from '../PostCard/PostCard';
 import Loader from '../Loader/Loader';
 
-export default function Gallery({ comments, posts, numPhotosCol, loading, setSelectedImg }){
+export default function Gallery({ posts, numPhotosCol, loading }){
     return (
       <Card.Group itemsPerRow={numPhotosCol} stackable>
         {loading ? (
@@ -19,7 +19,6 @@ export default function Gallery({ comments, posts, numPhotosCol, loading, setSel
             <PostCard
               post={post}
               key={post.pk}
-              comments={comments}
             />
           );
         })}

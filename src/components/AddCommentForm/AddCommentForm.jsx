@@ -16,11 +16,10 @@ export default function AddCommentForm(entry){
     })
   }
 
-  function handleSubmit(e) {
+  function handleSubmit() {
     const formData = new FormData()
     formData.append('text', state.text)
     formData.append('entry', entry.entry)
-    console.log(entry.entry)
     let url = 'http://catstagram.lofty.codes/api/comments/';
     setState({ text: ''})
 
@@ -34,6 +33,7 @@ export default function AddCommentForm(entry){
         })
         .catch(err => console.log(err))
   };
+  
     return (
         <Form  autoComplete="off" onSubmit={handleSubmit}>    
             <Form.Input
